@@ -20,40 +20,62 @@
             background: #faf5d8;
             color: #3d2a20;
             font-family: Georgia, "Times New Roman", serif;
-            transition: background 0.3s, color 0.3s;
         }
 
-        /* HEADER */
+        /* =========================
+           PROGRESS
+        ========================= */
+
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            z-index: 1000;
+            background: rgba(157, 108, 67, 0.15);
+        }
+
+        .progress {
+            width: 0%;
+            height: 100%;
+            background: #d07a51;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
 
         header {
             position: sticky;
-            top: 0;
-            z-index: 10;
+            top: 4px;
+            z-index: 100;
 
-            height: 70px;
+            height: 68px;
             padding: 0 5%;
 
             display: flex;
             align-items: center;
             justify-content: space-between;
 
-            background: rgba(250, 245, 216, 0.92);
-            backdrop-filter: blur(12px);
+            background: rgba(250, 245, 216, 0.82);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
 
-            border-bottom: 1px solid rgba(157, 108, 67, 0.2);
+            border-bottom: 1px solid rgba(157, 108, 67, 0.15);
         }
 
         .logo {
             color: #9d6c43;
             text-decoration: none;
-            font-size: 15px;
+            font-size: 14px;
             letter-spacing: 2px;
         }
 
         .controls {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 5px;
         }
 
         button {
@@ -65,57 +87,87 @@
         }
 
         .control {
-            width: 38px;
-            height: 38px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            font-size: 15px;
+            font-size: 14px;
         }
 
         .control:hover {
             background: #f1be68;
         }
 
-        /* BOOK */
+        /* =========================
+           BOOK
+        ========================= */
 
         main {
             width: min(760px, 90%);
             margin: 0 auto;
-            padding: 90px 0 130px;
+            padding: 100px 0 150px;
         }
 
-        .chapter-label {
+        .book-label {
             text-align: center;
             font-family: Arial, sans-serif;
-            color: #9d6c43;
-            font-size: 12px;
+            font-size: 11px;
             letter-spacing: 4px;
+            color: #9d6c43;
             margin-bottom: 25px;
             text-transform: uppercase;
         }
 
-        h1 {
+        .book-title {
             text-align: center;
+            font-size: clamp(48px, 8vw, 76px);
+            line-height: 0.9;
             font-weight: normal;
-            font-size: clamp(38px, 7vw, 62px);
-            line-height: 1;
             color: #9d6c43;
-            margin: 0 0 70px;
+            margin: 0;
+        }
+
+        .author {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 18px;
+            color: #9d6c43;
+        }
+
+        .ornament {
+            width: 60px;
+            height: 2px;
+            background: #f1be68;
+            margin: 75px auto;
+        }
+
+        /* =========================
+           TEXT
+        ========================= */
+
+        .chapter-label {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            letter-spacing: 4px;
+            color: #9d6c43;
+            margin-bottom: 25px;
+            text-transform: uppercase;
         }
 
         h2 {
             text-align: center;
+            font-size: clamp(34px, 6vw, 48px);
             font-weight: normal;
+            line-height: 1;
             color: #9d6c43;
-            font-size: 32px;
-            margin-top: 110px;
-            margin-bottom: 45px;
+            margin: 0 0 25px;
         }
 
         .date {
             text-align: center;
             font-style: italic;
             color: #9d6c43;
-            margin-bottom: 45px;
+            margin-bottom: 55px;
         }
 
         .text {
@@ -124,41 +176,61 @@
         }
 
         .text p {
-            margin: 0 0 28px;
-            text-align: left;
+            margin: 0 0 30px;
         }
 
         .dialogue {
-            padding-left: 20px;
+            padding-left: 25px;
         }
 
-        .divider {
-            width: 55px;
+        .chapter-break {
+            width: 45px;
             height: 2px;
             background: #f1be68;
-            margin: 80px auto;
+            margin: 100px auto;
         }
 
-        .ending {
-            margin-top: 100px;
-            padding: 45px 30px;
+        /* =========================
+           END
+        ========================= */
+
+        .preview-end {
+            margin-top: 120px;
+            padding: 55px 35px;
             text-align: center;
+
             background: #f1be68;
-            color: #3d2a20;
         }
 
-        .ending h3 {
+        .preview-end h3 {
+            margin: 0 0 18px;
+            font-size: 28px;
             font-weight: normal;
-            font-size: 27px;
-            margin: 0 0 15px;
         }
 
-        .ending p {
+        .preview-end p {
             margin: 0;
             line-height: 1.7;
         }
 
-        /* DARK MODE */
+        .ebook-button {
+            display: inline-block;
+            margin-top: 28px;
+            padding: 15px 28px;
+
+            background: #9d6c43;
+            color: #faf5d8;
+
+            text-decoration: none;
+
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+        }
+
+        /* =========================
+           DARK MODE
+        ========================= */
 
         body.dark {
             background: #30231c;
@@ -166,25 +238,37 @@
         }
 
         body.dark header {
-            background: rgba(48, 35, 28, 0.92);
-            border-bottom-color: rgba(241, 190, 104, 0.2);
+            background: rgba(48, 35, 28, 0.84);
+            border-color: rgba(241, 190, 104, 0.15);
         }
 
         body.dark .logo,
         body.dark button,
+        body.dark .book-label,
         body.dark .chapter-label,
-        body.dark h1,
         body.dark h2,
-        body.dark .date {
+        body.dark .date,
+        body.dark .author {
             color: #f1be68;
         }
 
-        body.dark .ending {
+        body.dark .book-title {
+            color: #f1be68;
+        }
+
+        body.dark .preview-end {
             background: #9d6c43;
             color: #faf5d8;
         }
 
-        /* MOBILE */
+        body.dark .ebook-button {
+            background: #f1be68;
+            color: #3d2a20;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
 
         @media (max-width: 600px) {
 
@@ -194,18 +278,17 @@
             }
 
             .logo {
-                font-size: 12px;
-                letter-spacing: 1px;
+                font-size: 11px;
             }
 
             .control {
-                width: 32px;
-                height: 32px;
+                width: 34px;
+                height: 34px;
             }
 
             main {
                 width: 88%;
-                padding-top: 60px;
+                padding-top: 70px;
             }
 
             .text {
@@ -213,12 +296,12 @@
                 line-height: 1.85;
             }
 
-            h1 {
-                margin-bottom: 55px;
+            .dialogue {
+                padding-left: 12px;
             }
 
-            h2 {
-                margin-top: 80px;
+            .preview-end {
+                padding: 45px 22px;
             }
         }
     </style>
@@ -226,157 +309,256 @@
 
 <body>
 
-<header>
+    <!-- READING PROGRESS -->
 
-    <a href="index.html" class="logo">
-        ՕԳՈՍՏՈՍՅԱՆ ԼՈՒՍԱԲԱՑ
-    </a>
-
-    <div class="controls">
-
-        <button class="control" onclick="changeFont(-1)">
-            A−
-        </button>
-
-        <button class="control" onclick="changeFont(1)">
-            A+
-        </button>
-
-        <button class="control" onclick="toggleDark()">
-            ☾
-        </button>
-
-    </div>
-
-</header>
-
-
-<main>
-
-    <div class="chapter-label">
-        Էլեկտրոնային հրատարակություն · 2026
-    </div>
-
-    <h1>
-        Նախաբան
-    </h1>
-
-
-    <section class="text">
-
-        <p>
-            — Մամ, ես գնում եմ արդեն, ճանապարհին եմ,- ասաց Էդգարը,
-            երբ խոսում էր մոր հետ։
-        </p>
-
-        <p>
-            — Աստված քեզ հետ, տղա՛ս։ Տաք հագուստ վերցրե՞լ ես։
-        </p>
-
-        <p>
-            — Հա, մամ ջան, բայց մի անհանգստացի, համ եղանակը լավն ա,
-            համ էլ մի քանի օրից գալու եմ, էլի,- անջատելով հեռախոսազանգը
-            ասաց Էդգարը, երբ արդեն գյուղ տանող ճանապարհի 5-րդ կիլոմետրին էր։
-        </p>
-
-        <p>
-            Օգոստոսի 24-ն էր, երբ Էդգարը գնում էր գյուղ՝ Դսեղ,
-            ամառվա վերջին օրերը վայելելու, բայց չէր էլ պատկերացնում,
-            թե ինչերի և Ում է հանդիպելու․․․
-        </p>
-
-    </section>
-
-
-    <div class="divider"></div>
-
-
-    <div class="chapter-label">
-        Գլուխ 1
-    </div>
-
-    <h2>
-        «Դսեղի Երիտասարդներ»
-    </h2>
-
-    <div class="date">
-        Օգոստոսի 20, Չորեքշաբթի
+    <div class="progress-container">
+        <div class="progress" id="progress"></div>
     </div>
 
 
-    <section class="text">
+    <!-- HEADER -->
 
-        <p>
-            Գյուղի երիտասարդների առցանց խմբին նամակ է գալիս,
-            որտեղ Անուշիկը գրում է․
-        </p>
+    <header>
 
-        <p class="dialogue">
-            «— Երեխե՜ք, բարևներ, ո՞նց եք․․․ Ուզում եմ հավաքվենք,
-            ու միասին վայելենք ամառվա վերջին օրերը․․․
-        </p>
+        <a href="index.html" class="logo">
+            ՕԳՈՍՏՈՍՅԱՆ ԼՈՒՍԱԲԱՑ
+        </a>
 
-        <p class="dialogue">
-            — Ես համաձայն եմ,- ասաց Նանեն՝ ձայնային հաղորդագրություն
-            ուղարկելով։
-        </p>
+        <div class="controls">
 
-        <p class="dialogue">
-            — Ես ու Անին էլ կանք,- գրեց Կարինեն»։
-        </p>
+            <button
+                class="control"
+                onclick="changeFont(-1)"
+                title="Փոքրացնել տառերը"
+            >
+                A−
+            </button>
 
-    </section>
+            <button
+                class="control"
+                onclick="changeFont(1)"
+                title="Մեծացնել տառերը"
+            >
+                A+
+            </button>
 
+            <button
+                class="control"
+                onclick="toggleDark()"
+                title="Dark mode"
+            >
+                ☾
+            </button>
 
-    <div class="ending">
+        </div>
 
-        <h3>
-            Սա դեռ միայն սկիզբն էր։
-        </h3>
-
-        <p>
-            Շարունակությունը հասանելի կլինի ամբողջական e-book-ում։
-        </p>
-
-    </div>
-
-</main>
-
-
-<script>
-
-    let fontSize = 20;
-
-    function changeFont(amount) {
-
-        fontSize += amount;
-
-        if (fontSize < 16) fontSize = 16;
-        if (fontSize > 28) fontSize = 28;
-
-        document.querySelectorAll(".text").forEach(element => {
-            element.style.fontSize = fontSize + "px";
-        });
-    }
+    </header>
 
 
-    function toggleDark() {
+    <!-- BOOK -->
 
-        document.body.classList.toggle("dark");
+    <main>
 
-        if (document.body.classList.contains("dark")) {
-            localStorage.setItem("darkMode", "true");
-        } else {
-            localStorage.setItem("darkMode", "false");
+        <div class="book-label">
+            Էլեկտրոնային հրատարակություն · 2026
+        </div>
+
+        <h1 class="book-title">
+            Օգոստոսյան<br>
+            Լուսաբաց
+        </h1>
+
+        <div class="author">
+            Արեն Անանյան
+        </div>
+
+
+        <div class="ornament"></div>
+
+
+        <!-- PRELUDE -->
+
+        <div class="chapter-label">
+            Նախաբան
+        </div>
+
+        <section class="text">
+
+            <p>
+                — Մամ, ես գնում եմ արդեն, ճանապարհին եմ,- ասաց Էդգարը,
+                երբ խոսում էր մոր հետ։
+            </p>
+
+            <p>
+                — Աստված քեզ հետ, տղա՛ս։ Տաք հագուստ վերցրե՞լ ես։
+            </p>
+
+            <p>
+                — Հա, մամ ջան, բայց մի անհանգստացի, համ եղանակը լավն ա,
+                համ էլ մի քանի օրից գալու եմ, էլի,- անջատելով
+                հեռախոսազանգը ասաց Էդգարը, երբ արդեն գյուղ տանող
+                ճանապարհի 5-րդ կիլոմետրին էր։
+            </p>
+
+            <p>
+                Օգոստոսի 24-ն էր, երբ Էդգարը գնում էր գյուղ՝ Դսեղ,
+                ամառվա վերջին օրերը վայելելու, բայց չէր էլ պատկերացնում,
+                թե ինչերի և Ում է հանդիպելու․․․
+            </p>
+
+        </section>
+
+
+        <div class="chapter-break"></div>
+
+
+        <!-- CHAPTER 1 -->
+
+        <div class="chapter-label">
+            Գլուխ 1
+        </div>
+
+        <h2>
+            «Դսեղի Երիտասարդներ»
+        </h2>
+
+        <div class="date">
+            Օգոստոսի 20, Չորեքշաբթի
+        </div>
+
+
+        <section class="text">
+
+            <p>
+                Գյուղի երիտասարդների առցանց խմբին նամակ է գալիս,
+                որտեղ Անուշիկը գրում է․
+            </p>
+
+            <p class="dialogue">
+                «— Երեխե՜ք, բարևներ, ո՞նց եք․․․ Ուզում եմ հավաքվենք,
+                ու միասին վայելենք ամառվա վերջին օրերը․․․
+            </p>
+
+            <p class="dialogue">
+                — Ես համաձայն եմ,- ասաց Նանեն՝ ձայնային հաղորդագրություն
+                ուղարկելով։
+            </p>
+
+            <p class="dialogue">
+                — Ես ու Անին էլ կանք,- գրեց Կարինեն»։
+            </p>
+
+        </section>
+
+
+        <!-- PREVIEW END -->
+
+        <section class="preview-end">
+
+            <h3>
+                Սա դեռ միայն սկիզբն էր։
+            </h3>
+
+            <p>
+                Նախաբանը և առաջին գլխի այս հատվածը
+                հասանելի են անվճար։
+            </p>
+
+            <a
+                href="#"
+                class="ebook-button"
+            >
+                ՍՏԱՆԱԼ ԱՄԲՈՂՋԱԿԱՆ E-BOOK →
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        /* =========================
+           FONT SIZE
+        ========================= */
+
+        let fontSize = 20;
+
+        function changeFont(amount) {
+
+            fontSize += amount;
+
+            if (fontSize < 16) {
+                fontSize = 16;
+            }
+
+            if (fontSize > 28) {
+                fontSize = 28;
+            }
+
+            document.querySelectorAll(".text").forEach(
+                element => {
+                    element.style.fontSize =
+                        fontSize + "px";
+                }
+            );
+
         }
-    }
 
 
-    if (localStorage.getItem("darkMode") === "true") {
-        document.body.classList.add("dark");
-    }
+        /* =========================
+           DARK MODE
+        ========================= */
 
-</script>
+        function toggleDark() {
+
+            document.body.classList.toggle("dark");
+
+            localStorage.setItem(
+                "darkMode",
+                document.body.classList.contains("dark")
+            );
+
+        }
+
+
+        if (
+            localStorage.getItem("darkMode")
+            === "true"
+        ) {
+
+            document.body.classList.add("dark");
+
+        }
+
+
+        /* =========================
+           READING PROGRESS
+        ========================= */
+
+        window.addEventListener(
+            "scroll",
+            function () {
+
+                const scrollTop =
+                    window.scrollY;
+
+                const documentHeight =
+                    document.documentElement.scrollHeight
+                    - window.innerHeight;
+
+                const percentage =
+                    (scrollTop / documentHeight) * 100;
+
+                document.getElementById(
+                    "progress"
+                ).style.width =
+                    percentage + "%";
+
+            }
+        );
+
+    </script>
 
 </body>
 </html>
