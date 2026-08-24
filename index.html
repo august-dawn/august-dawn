@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Օգոստոսյան Լուսաբաց</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Georgia, serif;
+            background:
+                linear-gradient(
+                    135deg,
+                    #f7c6b5 0%,
+                    #f3a98f 35%,
+                    #e99582 65%,
+                    #f5c7a8 100%
+                );
+            color: #3b2525;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .page {
+            width: min(1100px, 92%);
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            padding: 60px;
+        }
+
+        .text {
+            max-width: 560px;
+        }
+
+        .small-title {
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            opacity: 0.7;
+        }
+
+        h1 {
+            font-size: clamp(52px, 8vw, 100px);
+            line-height: 0.9;
+            font-weight: normal;
+            margin-bottom: 25px;
+        }
+
+        .author {
+            font-size: 20px;
+            margin-bottom: 45px;
+            opacity: 0.8;
+        }
+
+        .read-button {
+            display: inline-block;
+            padding: 16px 32px;
+            background: #3b2525;
+            color: #fff7f2;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .read-button:hover {
+            transform: translateY(-3px);
+            opacity: 0.9;
+        }
+
+        .cover {
+            width: 300px;
+            height: 430px;
+            background: rgba(255,255,255,0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 20px 25px 60px rgba(70, 30, 20, 0.18);
+            backdrop-filter: blur(5px);
+        }
+
+        .cover-text {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .cover-text h2 {
+            font-size: 38px;
+            font-weight: normal;
+            line-height: 0.95;
+        }
+
+        .cover-text p {
+            margin-top: 20px;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            letter-spacing: 3px;
+        }
+
+        @media (max-width: 750px) {
+            body {
+                overflow: auto;
+            }
+
+            .page {
+                flex-direction: column;
+                text-align: center;
+                padding: 45px 20px;
+                gap: 45px;
+            }
+
+            .cover {
+                width: 240px;
+                height: 340px;
+            }
+
+            .cover-text h2 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="page">
+
+        <section class="text">
+
+            <div class="small-title">
+                Էլեկտրոնային հրատարակություն · 2026
+            </div>
+
+            <h1>
+                Օգոստոսյան<br>
+                Լուսաբաց
+            </h1>
+
+            <div class="author">
+                Արեն Անանյան
+            </div>
+
+            <a href="#" class="read-button">
+                ԿԱՐԴԱԼ →
+            </a>
+
+        </section>
+
+
+        <section class="cover">
+
+            <div class="cover-text">
+
+                <h2>
+                    Օգոստոսյան<br>
+                    Լուսաբաց
+                </h2>
+
+                <p>
+                    ԱՐԵՆ ԱՆԱՆՅԱՆ
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>
