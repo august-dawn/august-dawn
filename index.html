@@ -8,130 +8,127 @@
 
     <style>
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
             min-height: 100vh;
+            background: #faf5d8;
+            color: #3d2a20;
             font-family: Georgia, serif;
-            background:
-                linear-gradient(
-                    135deg,
-                    #f7c6b5 0%,
-                    #f3a98f 35%,
-                    #e99582 65%,
-                    #f5c7a8 100%
-                );
-            color: #3b2525;
+        }
+
+        .hero {
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            padding: 60px 7%;
+            background:
+                radial-gradient(
+                    circle at 75% 25%,
+                    #f1be68 0%,
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #d07a51 0%,
+                    #f1be68 55%,
+                    #faf5d8 100%
+                );
         }
 
-        .page {
-            width: min(1100px, 92%);
-            min-height: 90vh;
+        .container {
+            width: min(1150px, 100%);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 60px;
-            padding: 60px;
+            gap: 80px;
         }
 
-        .text {
-            max-width: 560px;
+        .info {
+            flex: 1;
+            max-width: 600px;
         }
 
-        .small-title {
+        .label {
             font-family: Arial, sans-serif;
-            font-size: 13px;
+            font-size: 12px;
             letter-spacing: 4px;
-            text-transform: uppercase;
+            color: #9d6c43;
             margin-bottom: 25px;
-            opacity: 0.7;
+            text-transform: uppercase;
         }
 
         h1 {
-            font-size: clamp(52px, 8vw, 100px);
-            line-height: 0.9;
-            font-weight: normal;
-            margin-bottom: 25px;
+            font-size: clamp(55px, 8vw, 105px);
+            line-height: 0.88;
+            font-weight: 400;
+            color: #3d2a20;
+            margin-bottom: 30px;
         }
 
         .author {
-            font-size: 20px;
+            font-size: 21px;
+            color: #9d6c43;
             margin-bottom: 45px;
-            opacity: 0.8;
         }
 
         .read-button {
             display: inline-block;
-            padding: 16px 32px;
-            background: #3b2525;
-            color: #fff7f2;
+            padding: 17px 34px;
+            background: #9d6c43;
+            color: #faf5d8;
             text-decoration: none;
             font-family: Arial, sans-serif;
-            font-size: 13px;
+            font-size: 12px;
             letter-spacing: 2px;
-            transition: 0.3s;
+            transition: 0.3s ease;
         }
 
         .read-button:hover {
+            background: #3d2a20;
             transform: translateY(-3px);
-            opacity: 0.9;
         }
 
-        .cover {
-            width: 300px;
-            height: 430px;
-            background: rgba(255,255,255,0.25);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 20px 25px 60px rgba(70, 30, 20, 0.18);
-            backdrop-filter: blur(5px);
+        .book {
+            flex: 0 0 auto;
+            width: min(360px, 38vw);
+            filter: drop-shadow(
+                20px 25px 30px rgba(61, 42, 32, 0.25)
+            );
         }
 
-        .cover-text {
-            text-align: center;
-            padding: 30px;
-        }
-
-        .cover-text h2 {
-            font-size: 38px;
-            font-weight: normal;
-            line-height: 0.95;
-        }
-
-        .cover-text p {
-            margin-top: 20px;
-            font-family: Arial, sans-serif;
-            font-size: 12px;
-            letter-spacing: 3px;
+        .book img {
+            display: block;
+            width: 100%;
+            height: auto;
         }
 
         @media (max-width: 750px) {
-            body {
-                overflow: auto;
+
+            .hero {
+                padding: 50px 25px;
             }
 
-            .page {
-                flex-direction: column;
-                text-align: center;
-                padding: 45px 20px;
+            .container {
+                flex-direction: column-reverse;
                 gap: 45px;
+                text-align: center;
             }
 
-            .cover {
-                width: 240px;
-                height: 340px;
+            .book {
+                width: min(280px, 70vw);
             }
 
-            .cover-text h2 {
-                font-size: 30px;
+            h1 {
+                font-size: clamp(48px, 15vw, 75px);
+            }
+
+            .label {
+                letter-spacing: 3px;
             }
         }
     </style>
@@ -139,46 +136,39 @@
 
 <body>
 
-    <main class="page">
+    <main class="hero">
 
-        <section class="text">
+        <div class="container">
 
-            <div class="small-title">
-                Էլեկտրոնային հրատարակություն · 2026
-            </div>
+            <section class="info">
 
-            <h1>
-                Օգոստոսյան<br>
-                Լուսաբաց
-            </h1>
+                <div class="label">
+                    Էլեկտրոնային հրատարակություն · 2026
+                </div>
 
-            <div class="author">
-                Արեն Անանյան
-            </div>
-
-            <a href="#" class="read-button">
-                ԿԱՐԴԱԼ →
-            </a>
-
-        </section>
-
-
-        <section class="cover">
-
-            <div class="cover-text">
-
-                <h2>
+                <h1>
                     Օգոստոսյան<br>
                     Լուսաբաց
-                </h2>
+                </h1>
 
-                <p>
-                    ԱՐԵՆ ԱՆԱՆՅԱՆ
-                </p>
+                <div class="author">
+                    Արեն Անանյան
+                </div>
 
-            </div>
+                <a href="reader.html" class="read-button">
+                    ԿԱՐԴԱԼ →
+                </a>
 
-        </section>
+            </section>
+
+            <section class="book">
+                <img
+                    src="cover.jpg"
+                    alt="Օգոստոսյան Լուսաբաց գրքի շապիկը"
+                >
+            </section>
+
+        </div>
 
     </main>
 
