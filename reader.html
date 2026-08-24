@@ -1,318 +1,694 @@
 <!DOCTYPE html>
 <html lang="hy">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Կարդալ — Օգոստոսյան Լուսաբաց</title>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Կարդալ — Օգոստոսյան Լուսաբաց
+    </title>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
     <style>
+
         * {
             box-sizing: border-box;
         }
+
 
         html {
             scroll-behavior: smooth;
         }
 
+
         body {
+
             margin: 0;
+
             background: #faf5d8;
+
             color: #3d2a20;
-            font-family: Georgia, "Times New Roman", serif;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            transition:
+                background 0.3s ease,
+                color 0.3s ease;
         }
 
+
         /* =========================
-           PROGRESS
+           READING PROGRESS
         ========================= */
 
         .progress-container {
+
             position: fixed;
+
             top: 0;
             left: 0;
+
             width: 100%;
+
             height: 4px;
-            z-index: 1000;
-            background: rgba(157, 108, 67, 0.15);
+
+            z-index: 2000;
+
+            background:
+                rgba(157,108,67,0.15);
         }
 
+
         .progress {
+
             width: 0%;
+
             height: 100%;
+
             background: #d07a51;
         }
+
 
         /* =========================
            HEADER
         ========================= */
 
         header {
+
             position: sticky;
+
             top: 4px;
-            z-index: 100;
+
+            z-index: 1000;
 
             height: 68px;
-            padding: 0 5%;
+
+            padding:
+                0 5%;
 
             display: flex;
+
             align-items: center;
-            justify-content: space-between;
 
-            background: rgba(250, 245, 216, 0.82);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            justify-content:
+                space-between;
 
-            border-bottom: 1px solid rgba(157, 108, 67, 0.15);
+            background:
+                rgba(
+                    250,
+                    245,
+                    216,
+                    0.82
+                );
+
+            backdrop-filter:
+                blur(20px);
+
+            -webkit-backdrop-filter:
+                blur(20px);
+
+            border-bottom:
+                1px solid
+                rgba(
+                    157,
+                    108,
+                    67,
+                    0.15
+                );
         }
 
+
         .logo {
+
             color: #9d6c43;
+
             text-decoration: none;
-            font-size: 14px;
+
+            font-size: 13px;
+
             letter-spacing: 2px;
         }
 
+
         .controls {
+
             display: flex;
+
             align-items: center;
+
             gap: 5px;
         }
 
-        button {
-            border: none;
-            background: transparent;
-            color: #9d6c43;
-            cursor: pointer;
-            font-family: Arial, sans-serif;
-        }
 
         .control {
+
             width: 40px;
+
             height: 40px;
+
+            border: none;
+
             border-radius: 50%;
-            font-size: 14px;
+
+            background: transparent;
+
+            color: #9d6c43;
+
+            cursor: pointer;
+
+            font-family: Arial, sans-serif;
+
+            transition: 0.2s;
         }
 
+
         .control:hover {
+
             background: #f1be68;
+
+            transform:
+                translateY(-2px);
         }
+
 
         /* =========================
            BOOK
         ========================= */
 
         main {
-            width: min(760px, 90%);
+
+            width:
+                min(
+                    760px,
+                    90%
+                );
+
             margin: 0 auto;
-            padding: 100px 0 150px;
+
+            padding:
+                100px 0 150px;
         }
+
 
         .book-label {
+
             text-align: center;
+
             font-family: Arial, sans-serif;
-            font-size: 11px;
+
+            font-size: 10px;
+
             letter-spacing: 4px;
+
             color: #9d6c43;
+
             margin-bottom: 25px;
-            text-transform: uppercase;
+
+            text-transform:
+                uppercase;
         }
 
+
         .book-title {
+
             text-align: center;
-            font-size: clamp(48px, 8vw, 76px);
+
+            font-size:
+                clamp(
+                    48px,
+                    8vw,
+                    76px
+                );
+
             line-height: 0.9;
+
             font-weight: normal;
+
             color: #9d6c43;
+
             margin: 0;
         }
 
+
         .author {
+
             text-align: center;
+
             margin-top: 25px;
+
             font-size: 18px;
+
             color: #9d6c43;
         }
 
+
         .ornament {
+
             width: 60px;
+
             height: 2px;
+
             background: #f1be68;
-            margin: 75px auto;
+
+            margin:
+                75px auto;
         }
+
+
+        /* =========================
+           CHAPTER
+        ========================= */
+
+        .chapter-label {
+
+            text-align: center;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 10px;
+
+            letter-spacing: 4px;
+
+            color: #9d6c43;
+
+            margin-bottom: 25px;
+
+            text-transform:
+                uppercase;
+        }
+
+
+        h2 {
+
+            text-align: center;
+
+            font-size:
+                clamp(
+                    34px,
+                    6vw,
+                    48px
+                );
+
+            font-weight: normal;
+
+            line-height: 1;
+
+            color: #9d6c43;
+
+            margin:
+                0 0 25px;
+        }
+
+
+        .date {
+
+            text-align: center;
+
+            font-style: italic;
+
+            color: #9d6c43;
+
+            margin-bottom: 55px;
+        }
+
 
         /* =========================
            TEXT
         ========================= */
 
-        .chapter-label {
-            text-align: center;
-            font-family: Arial, sans-serif;
-            font-size: 11px;
-            letter-spacing: 4px;
-            color: #9d6c43;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-        }
-
-        h2 {
-            text-align: center;
-            font-size: clamp(34px, 6vw, 48px);
-            font-weight: normal;
-            line-height: 1;
-            color: #9d6c43;
-            margin: 0 0 25px;
-        }
-
-        .date {
-            text-align: center;
-            font-style: italic;
-            color: #9d6c43;
-            margin-bottom: 55px;
-        }
-
         .text {
+
             font-size: 20px;
+
             line-height: 1.95;
+
+            transition:
+                font-size 0.2s ease;
         }
+
 
         .text p {
-            margin: 0 0 30px;
+
+            margin:
+                0 0 30px;
         }
 
+
         .dialogue {
+
             padding-left: 25px;
         }
 
+
         .chapter-break {
+
             width: 45px;
+
             height: 2px;
+
             background: #f1be68;
-            margin: 100px auto;
+
+            margin:
+                100px auto;
         }
+
 
         /* =========================
-           END
+           REGISTER CARD
         ========================= */
 
-        .preview-end {
-            margin-top: 120px;
-            padding: 55px 35px;
+        .register-card {
+
+            margin-top: 110px;
+
+            padding:
+                55px 35px;
+
             text-align: center;
 
-            background: #f1be68;
+            border-radius: 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #d07a51,
+                    #f1be68
+                );
+
+            box-shadow:
+                0 20px 60px
+                rgba(
+                    61,
+                    42,
+                    32,
+                    0.16
+                );
         }
 
-        .preview-end h3 {
-            margin: 0 0 18px;
-            font-size: 28px;
+
+        .register-icon {
+
+            font-size: 38px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .register-card h3 {
+
+            margin:
+                0 0 18px;
+
+            font-size: 30px;
+
             font-weight: normal;
+
+            color: #3d2a20;
         }
 
-        .preview-end p {
-            margin: 0;
+
+        .register-card p {
+
+            margin:
+                0 auto 28px;
+
+            max-width: 520px;
+
             line-height: 1.7;
+
+            color: #3d2a20;
         }
 
-        .ebook-button {
+
+        .register-button {
+
             display: inline-block;
-            margin-top: 28px;
-            padding: 15px 28px;
+
+            padding:
+                16px 30px;
+
+            border-radius: 14px;
 
             background: #9d6c43;
+
             color: #faf5d8;
 
             text-decoration: none;
 
             font-family: Arial, sans-serif;
+
             font-size: 11px;
+
             letter-spacing: 2px;
+
+            transition: 0.25s;
         }
+
+
+        .register-button:hover {
+
+            background: #3d2a20;
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        /* =========================
+           LOGGED IN MESSAGE
+        ========================= */
+
+        .logged-in {
+
+            display: none;
+
+            margin-top: 110px;
+
+            padding:
+                45px 30px;
+
+            text-align: center;
+
+            border-radius: 30px;
+
+            background:
+                rgba(
+                    241,
+                    190,
+                    104,
+                    0.35
+                );
+
+            border:
+                1px solid
+                rgba(
+                    157,
+                    108,
+                    67,
+                    0.2
+                );
+        }
+
+
+        .logged-in h3 {
+
+            margin:
+                0 0 15px;
+
+            font-size: 28px;
+
+            font-weight: normal;
+
+            color: #9d6c43;
+        }
+
+
+        .logged-in p {
+
+            line-height: 1.7;
+
+            margin: 0 0 25px;
+        }
+
+
+        .full-book-button {
+
+            display: inline-block;
+
+            padding:
+                15px 28px;
+
+            background: #9d6c43;
+
+            color: #faf5d8;
+
+            text-decoration: none;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 11px;
+
+            letter-spacing: 2px;
+
+            border-radius: 12px;
+        }
+
 
         /* =========================
            DARK MODE
         ========================= */
 
         body.dark {
+
             background: #30231c;
+
             color: #faf5d8;
         }
 
+
         body.dark header {
-            background: rgba(48, 35, 28, 0.84);
-            border-color: rgba(241, 190, 104, 0.15);
+
+            background:
+                rgba(
+                    48,
+                    35,
+                    28,
+                    0.88
+                );
+
+            border-color:
+                rgba(
+                    241,
+                    190,
+                    104,
+                    0.15
+                );
         }
 
+
         body.dark .logo,
-        body.dark button,
+        body.dark .control,
         body.dark .book-label,
         body.dark .chapter-label,
         body.dark h2,
         body.dark .date,
         body.dark .author {
+
             color: #f1be68;
         }
+
 
         body.dark .book-title {
+
             color: #f1be68;
         }
 
-        body.dark .preview-end {
-            background: #9d6c43;
-            color: #faf5d8;
+
+        body.dark .logged-in {
+
+            background:
+                rgba(
+                    157,
+                    108,
+                    67,
+                    0.35
+                );
         }
 
-        body.dark .ebook-button {
-            background: #f1be68;
-            color: #3d2a20;
-        }
 
         /* =========================
            MOBILE
         ========================= */
 
-        @media (max-width: 600px) {
+        @media (
+            max-width: 600px
+        ) {
 
             header {
+
                 height: 62px;
-                padding: 0 4%;
+
+                padding:
+                    0 4%;
             }
+
 
             .logo {
-                font-size: 11px;
+
+                font-size: 10px;
             }
+
 
             .control {
+
                 width: 34px;
+
                 height: 34px;
+
+                font-size: 12px;
             }
+
 
             main {
+
                 width: 88%;
-                padding-top: 70px;
+
+                padding-top:
+                    70px;
             }
 
+
             .text {
+
                 font-size: 18px;
+
                 line-height: 1.85;
             }
 
+
             .dialogue {
+
                 padding-left: 12px;
             }
 
-            .preview-end {
-                padding: 45px 22px;
+
+            .register-card {
+
+                padding:
+                    45px 22px;
             }
+
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <!-- READING PROGRESS -->
+
+    <!-- PROGRESS -->
 
     <div class="progress-container">
-        <div class="progress" id="progress"></div>
+
+        <div
+            class="progress"
+            id="progress"
+        ></div>
+
     </div>
 
 
@@ -320,27 +696,35 @@
 
     <header>
 
-        <a href="index.html" class="logo">
+        <a
+            href="index.html"
+            class="logo"
+        >
+
             ՕԳՈՍՏՈՍՅԱՆ ԼՈՒՍԱԲԱՑ
+
         </a>
+
 
         <div class="controls">
 
             <button
                 class="control"
                 onclick="changeFont(-1)"
-                title="Փոքրացնել տառերը"
+                title="Փոքրացնել"
             >
                 A−
             </button>
 
+
             <button
                 class="control"
                 onclick="changeFont(1)"
-                title="Մեծացնել տառերը"
+                title="Մեծացնել"
             >
                 A+
             </button>
+
 
             <button
                 class="control"
@@ -348,6 +732,17 @@
                 title="Dark mode"
             >
                 ☾
+            </button>
+
+
+            <button
+                class="control"
+                id="logoutButton"
+                onclick="logout()"
+                title="Դուրս գալ"
+                style="display:none;"
+            >
+                ↪
             </button>
 
         </div>
@@ -359,17 +754,26 @@
 
     <main>
 
+
         <div class="book-label">
+
             Էլեկտրոնային հրատարակություն · 2026
+
         </div>
 
+
         <h1 class="book-title">
+
             Օգոստոսյան<br>
             Լուսաբաց
+
         </h1>
 
+
         <div class="author">
+
             Արեն Անանյան
+
         </div>
 
 
@@ -379,31 +783,50 @@
         <!-- PRELUDE -->
 
         <div class="chapter-label">
+
             Նախաբան
+
         </div>
+
 
         <section class="text">
 
             <p>
-                — Մամ, ես գնում եմ արդեն, ճանապարհին եմ,- ասաց Էդգարը,
+
+                — Մամ, ես գնում եմ արդեն,
+                ճանապարհին եմ,- ասաց Էդգարը,
                 երբ խոսում էր մոր հետ։
+
             </p>
 
-            <p>
-                — Աստված քեզ հետ, տղա՛ս։ Տաք հագուստ վերցրե՞լ ես։
-            </p>
 
             <p>
-                — Հա, մամ ջան, բայց մի անհանգստացի, համ եղանակը լավն ա,
-                համ էլ մի քանի օրից գալու եմ, էլի,- անջատելով
-                հեռախոսազանգը ասաց Էդգարը, երբ արդեն գյուղ տանող
-                ճանապարհի 5-րդ կիլոմետրին էր։
+
+                — Աստված քեզ հետ,
+                տղա՛ս։ Տաք հագուստ վերցրե՞լ ես։
+
             </p>
 
+
             <p>
-                Օգոստոսի 24-ն էր, երբ Էդգարը գնում էր գյուղ՝ Դսեղ,
-                ամառվա վերջին օրերը վայելելու, բայց չէր էլ պատկերացնում,
+
+                — Հա, մամ ջան, բայց մի անհանգստացի,
+                համ եղանակը լավն ա, համ էլ մի քանի
+                օրից գալու եմ, էլի,- անջատելով
+                հեռախոսազանգը ասաց Էդգարը,
+                երբ արդեն գյուղ տանող ճանապարհի
+                5-րդ կիլոմետրին էր։
+
+            </p>
+
+
+            <p>
+
+                Օգոստոսի 24-ն էր, երբ Էդգարը գնում էր
+                գյուղ՝ Դսեղ, ամառվա վերջին օրերը
+                վայելելու, բայց չէր էլ պատկերացնում,
                 թե ինչերի և Ում է հանդիպելու․․․
+
             </p>
 
         </section>
@@ -415,119 +838,326 @@
         <!-- CHAPTER 1 -->
 
         <div class="chapter-label">
+
             Գլուխ 1
+
         </div>
 
+
         <h2>
+
             «Դսեղի Երիտասարդներ»
+
         </h2>
 
+
         <div class="date">
+
             Օգոստոսի 20, Չորեքշաբթի
+
         </div>
 
 
         <section class="text">
 
             <p>
-                Գյուղի երիտասարդների առցանց խմբին նամակ է գալիս,
-                որտեղ Անուշիկը գրում է․
+
+                Գյուղի երիտասարդների առցանց խմբին
+                նամակ է գալիս, որտեղ Անուշիկը գրում է․
+
             </p>
 
-            <p class="dialogue">
-                «— Երեխե՜ք, բարևներ, ո՞նց եք․․․ Ուզում եմ հավաքվենք,
-                ու միասին վայելենք ամառվա վերջին օրերը․․․
-            </p>
 
             <p class="dialogue">
-                — Ես համաձայն եմ,- ասաց Նանեն՝ ձայնային հաղորդագրություն
-                ուղարկելով։
+
+                «— Երեխե՜ք, բարևներ, ո՞նց եք․․․
+                Ուզում եմ հավաքվենք, ու միասին
+                վայելենք ամառվա վերջին օրերը․․․
+
             </p>
 
+
             <p class="dialogue">
+
+                — Ես համաձայն եմ,- ասաց Նանեն՝
+                ձայնային հաղորդագրություն ուղարկելով։
+
+            </p>
+
+
+            <p class="dialogue">
+
                 — Ես ու Անին էլ կանք,- գրեց Կարինեն»։
+
             </p>
 
         </section>
 
 
-        <!-- PREVIEW END -->
+        <div class="chapter-break"></div>
 
-        <section class="preview-end">
+
+        <!-- REGISTER -->
+
+        <section
+            class="register-card"
+            id="registerCard"
+        >
+
+            <div class="register-icon">
+                📖
+            </div>
+
 
             <h3>
-                Սա դեռ միայն սկիզբն էր։
+
+                Շարունակությունը սպասում է։
+
             </h3>
 
+
             <p>
-                Նախաբանը և առաջին գլխի այս հատվածը
-                հասանելի են անվճար։
+
+                Դու կարդացիր անվճար նախաբանը
+                և առաջին գլխի հատվածը։
+                Գրանցվիր՝ ամբողջական գիրքը
+                կարդալու համար։
+
             </p>
 
+
             <a
-                href="#"
-                class="ebook-button"
+                href="auth.html"
+                class="register-button"
             >
-                ՍՏԱՆԱԼ ԱՄԲՈՂՋԱԿԱՆ E-BOOK →
+
+                ԳՐԱՆՑՎԵԼ ԵՎ ՇԱՐՈՒՆԱԿԵԼ →
+
             </a>
 
         </section>
+
+
+        <!-- LOGGED IN -->
+
+        <section
+            class="logged-in"
+            id="loggedIn"
+        >
+
+            <h3>
+
+                Բարի վերադարձ։ 📚
+
+            </h3>
+
+
+            <p>
+
+                Դու արդեն մուտք գործած ես։
+                Ամբողջական գրքի համակարգը
+                պատրաստելու հաջորդ փուլում
+                այստեղից կանցնես ամբողջական
+                ընթերցմանը։
+
+            </p>
+
+
+            <a
+                href="#"
+                class="full-book-button"
+            >
+
+                ՇԱՐՈՒՆԱԿԵԼ ԸՆԹԵՐՑՈՒՄԸ →
+
+            </a>
+
+        </section>
+
 
     </main>
 
 
     <script>
 
+
+        /* =========================
+           SUPABASE
+        ========================= */
+
+
+        const SUPABASE_URL =
+            "https://edfecffaribdangfhede.supabase.co";
+
+
+        const SUPABASE_KEY =
+            "sb_publishable_nGBIWO0FF79n2VNxdt2vYg_e5UB5HwJ";
+
+
+        const supabaseClient =
+            window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_KEY
+            );
+
+
+        /* =========================
+           AUTH STATUS
+        ========================= */
+
+
+        async function checkLogin() {
+
+            const {
+                data: {
+                    user
+                }
+            } =
+                await supabaseClient
+                    .auth
+                    .getUser();
+
+
+            const registerCard =
+                document.getElementById(
+                    "registerCard"
+                );
+
+
+            const loggedIn =
+                document.getElementById(
+                    "loggedIn"
+                );
+
+
+            const logoutButton =
+                document.getElementById(
+                    "logoutButton"
+                );
+
+
+            if (user) {
+
+                registerCard.style.display =
+                    "none";
+
+                loggedIn.style.display =
+                    "block";
+
+                logoutButton.style.display =
+                    "block";
+
+            } else {
+
+                registerCard.style.display =
+                    "block";
+
+                loggedIn.style.display =
+                    "none";
+
+                logoutButton.style.display =
+                    "none";
+
+            }
+
+        }
+
+
+        checkLogin();
+
+
         /* =========================
            FONT SIZE
         ========================= */
 
-        let fontSize = 20;
+
+        let fontSize =
+            Number(
+                localStorage.getItem(
+                    "fontSize"
+                )
+            ) || 20;
+
+
+        function applyFontSize() {
+
+            document
+                .querySelectorAll(".text")
+                .forEach(
+                    element => {
+
+                        element.style.fontSize =
+                            fontSize + "px";
+
+                    }
+                );
+
+        }
+
 
         function changeFont(amount) {
 
             fontSize += amount;
 
+
             if (fontSize < 16) {
+
                 fontSize = 16;
+
             }
+
 
             if (fontSize > 28) {
+
                 fontSize = 28;
+
             }
 
-            document.querySelectorAll(".text").forEach(
-                element => {
-                    element.style.fontSize =
-                        fontSize + "px";
-                }
+
+            localStorage.setItem(
+                "fontSize",
+                fontSize
             );
 
+
+            applyFontSize();
+
         }
+
+
+        applyFontSize();
 
 
         /* =========================
            DARK MODE
         ========================= */
 
+
         function toggleDark() {
 
-            document.body.classList.toggle("dark");
+            const dark =
+                document.body
+                    .classList
+                    .toggle("dark");
+
 
             localStorage.setItem(
                 "darkMode",
-                document.body.classList.contains("dark")
+                dark
             );
 
         }
 
 
         if (
-            localStorage.getItem("darkMode")
-            === "true"
+            localStorage.getItem(
+                "darkMode"
+            ) === "true"
         ) {
 
-            document.body.classList.add("dark");
+            document.body
+                .classList
+                .add("dark");
 
         }
 
@@ -536,6 +1166,7 @@
            READING PROGRESS
         ========================= */
 
+
         window.addEventListener(
             "scroll",
             function () {
@@ -543,22 +1174,61 @@
                 const scrollTop =
                     window.scrollY;
 
+
                 const documentHeight =
-                    document.documentElement.scrollHeight
-                    - window.innerHeight;
+                    document.documentElement
+                        .scrollHeight
+                    -
+                    window.innerHeight;
 
-                const percentage =
-                    (scrollTop / documentHeight) * 100;
 
-                document.getElementById(
-                    "progress"
-                ).style.width =
-                    percentage + "%";
+                let percentage = 0;
+
+
+                if (
+                    documentHeight > 0
+                ) {
+
+                    percentage =
+                        (
+                            scrollTop /
+                            documentHeight
+                        ) * 100;
+
+                }
+
+
+                document
+                    .getElementById(
+                        "progress"
+                    )
+                    .style.width =
+                        percentage + "%";
+
 
             }
         );
 
+
+        /* =========================
+           LOGOUT
+        ========================= */
+
+
+        async function logout() {
+
+            await supabaseClient
+                .auth
+                .signOut();
+
+
+            window.location.reload();
+
+        }
+
     </script>
 
+
 </body>
+
 </html>
