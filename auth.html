@@ -1,1 +1,418 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Մուտք — Օգոստոսյան Լուսաբաց</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                radial-gradient(
+                    circle at 75% 20%,
+                    #f1be68,
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #d07a51,
+                    #f1be68,
+                    #faf5d8
+                );
+
+            color: #3d2a20;
+            font-family: Georgia, serif;
+        }
+
+        .card {
+            width: min(430px, 90%);
+
+            padding: 45px 35px;
+
+            background:
+                rgba(250, 245, 216, 0.65);
+
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+
+            border: 1px solid
+                rgba(255,255,255,0.6);
+
+            border-radius: 30px;
+
+            box-shadow:
+                0 25px 70px
+                rgba(61,42,32,0.2);
+
+            text-align: center;
+        }
+
+        .label {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            letter-spacing: 4px;
+            color: #9d6c43;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: normal;
+            line-height: 1;
+            color: #9d6c43;
+            margin: 0 0 12px;
+        }
+
+        .subtitle {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
+
+        input {
+            width: 100%;
+
+            padding: 15px 17px;
+            margin-bottom: 13px;
+
+            border: 1px solid
+                rgba(157,108,67,0.3);
+
+            border-radius: 14px;
+
+            background:
+                rgba(255,255,255,0.45);
+
+            color: #3d2a20;
+
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #d07a51;
+        }
+
+        button {
+            width: 100%;
+
+            padding: 16px;
+
+            margin-top: 10px;
+
+            border: none;
+            border-radius: 14px;
+
+            background: #9d6c43;
+            color: #faf5d8;
+
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+        button:hover {
+            background: #3d2a20;
+            transform: translateY(-2px);
+        }
+
+        .switch {
+            margin-top: 25px;
+
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+        }
+
+        .switch a {
+            color: #9d6c43;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .message {
+            min-height: 22px;
+            margin-top: 18px;
+
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 25px;
+
+            color: #9d6c43;
+            text-decoration: none;
+
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="label">
+        ՕԳՈՍՏՈՍՅԱՆ ԼՈՒՍԱԲԱՑ
+    </div>
+
+    <h1 id="title">
+        Մուտք
+    </h1>
+
+    <p class="subtitle" id="subtitle">
+        Մուտք գործիր՝ շարունակելու ընթերցումը։
+    </p>
+
+    <input
+        type="email"
+        id="email"
+        placeholder="Email"
+    >
+
+    <input
+        type="password"
+        id="password"
+        placeholder="Գաղտնաբառ"
+    >
+
+    <button id="submit">
+        ՄՈՒՏՔ ԳՈՐԾԵԼ →
+    </button>
+
+    <div class="switch">
+        <span id="switchText">
+            Դեռ հաշիվ չունե՞ս։
+        </span>
+
+        <a id="switchButton">
+            Գրանցվել
+        </a>
+    </div>
+
+    <div
+        class="message"
+        id="message"
+    ></div>
+
+    <a
+        href="index.html"
+        class="back"
+    >
+        ← Վերադառնալ գլխավոր էջ
+    </a>
+
+</div>
+
+
+<script>
+
+    const SUPABASE_URL =
+        "https://edfecffaribdangfhede.supabase.co";
+
+    const SUPABASE_KEY =
+        "sb_publishable_nGBIWO0FF79n2VNxdt2vYg_e5UB5HwJ";
+
+    const supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+
+
+    let signupMode = false;
+
+
+    const title =
+        document.getElementById("title");
+
+    const subtitle =
+        document.getElementById("subtitle");
+
+    const submit =
+        document.getElementById("submit");
+
+    const switchText =
+        document.getElementById("switchText");
+
+    const switchButton =
+        document.getElementById("switchButton");
+
+    const message =
+        document.getElementById("message");
+
+
+    switchButton.addEventListener(
+        "click",
+        function () {
+
+            signupMode = !signupMode;
+
+            if (signupMode) {
+
+                title.textContent =
+                    "Գրանցվել";
+
+                subtitle.textContent =
+                    "Ստեղծիր հաշիվ՝ ամբողջական գիրքը կարդալու համար.";
+
+                submit.textContent =
+                    "ԳՐԱՆՑՎԵԼ →";
+
+                switchText.textContent =
+                    "Արդեն հաշիվ ունե՞ս։";
+
+                switchButton.textContent =
+                    "Մուտք գործել";
+
+            } else {
+
+                title.textContent =
+                    "Մուտք";
+
+                subtitle.textContent =
+                    "Մուտք գործիր՝ շարունակելու ընթերցումը։";
+
+                submit.textContent =
+                    "ՄՈՒՏՔ ԳՈՐԾԵԼ →";
+
+                switchText.textContent =
+                    "Դեռ հաշիվ չունե՞ս։";
+
+                switchButton.textContent =
+                    "Գրանցվել";
+
+            }
+
+            message.textContent = "";
+
+        }
+    );
+
+
+    submit.addEventListener(
+        "click",
+        async function () {
+
+            const email =
+                document.getElementById("email")
+                .value.trim();
+
+            const password =
+                document.getElementById("password")
+                .value;
+
+
+            if (!email || !password) {
+
+                message.textContent =
+                    "Լրացրու email-ը և գաղտնաբառը։";
+
+                return;
+
+            }
+
+
+            message.textContent =
+                "Մի պահ…";
+
+
+            if (signupMode) {
+
+                const {
+                    data,
+                    error
+                } =
+                    await supabaseClient.auth.signUp({
+                        email: email,
+                        password: password
+                    });
+
+
+                if (error) {
+
+                    message.textContent =
+                        error.message;
+
+                    return;
+
+                }
+
+
+                message.textContent =
+                    "Հաշիվը ստեղծվեց։ 🎉";
+
+
+                setTimeout(
+                    () => {
+                        window.location.href =
+                            "reader.html";
+                    },
+                    1000
+                );
+
+
+            } else {
+
+                const {
+                    data,
+                    error
+                } =
+                    await supabaseClient.auth.signInWithPassword({
+                        email: email,
+                        password: password
+                    });
+
+
+                if (error) {
+
+                    message.textContent =
+                        "Email-ը կամ գաղտնաբառը սխալ է։";
+
+                    return;
+
+                }
+
+
+                message.textContent =
+                    "Բարի վերադարձ։ 📖";
+
+
+                setTimeout(
+                    () => {
+                        window.location.href =
+                            "reader.html";
+                    },
+                    700
+                );
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
